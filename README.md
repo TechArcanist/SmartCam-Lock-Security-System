@@ -29,7 +29,7 @@ The **ESP32-CAM** captures images whenever the **PIR Motion Sensor** detects mov
 
 1. Clone the repository:
    <div align="center">
-    <a href="https://github.com/yourusername/smartcam-lock-security-system.git">
+    <a href="https://github.com/TechArcanist/SmartCam-Lock-Security-System.git">
         <img src="https://img.shields.io/badge/Clone_Repository-007ACC?style=for-the-badge&logo=github&logoColor=white" />
     </a>
    </div>
