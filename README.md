@@ -1,9 +1,8 @@
 ## 🔒 SmartCam-Lock Security System
 
 <h1 align="center">
-    <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=800&height=100&duration=4000&lines=SmartCam-Lock+Security+System+🔐;" />
+    <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&color=00008B&center=true&vCenter=true&width=800&height=100&duration=4000&lines=SmartCam-Lock+Security+System+🔐;" />
 </h1>
-
 ## Features
 
 - **ESP32-CAM:** Captures real-time photos when motion is detected.
@@ -68,5 +67,5 @@ The **ESP32-CAM** captures images whenever the **PIR Motion Sensor** detects mov
 ---
 
 <h1 align="center">
-    <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=500&height=70&duration=4000&lines=Thanks+for+Visiting!+👋;" />
+    <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&color=00008B&center=true&vCenter=true&width=500&height=70&duration=4000&lines=Thanks+for+Visiting!+👋;" />
 </h1>
