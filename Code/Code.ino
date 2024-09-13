@@ -12,15 +12,16 @@ const char* password = "xxx";
 String chatId = "xxx";
 String BOTtoken = "xxx";
 
-bool sendPhoto = false;
+bool lockState = false; // Track the state of the lock
 WiFiClientSecure clientTCP;
 
 UniversalTelegramBot bot(BOTtoken, clientTCP);
 
-#define TRIG_PIN 14
-#define ECHO_PIN 15
+// Define pins
+#define PIR_PIN 12
+#define RELAY_PIN 13
 #define FLASH_LED 4
-#define buzzer 13
+#define buzzer 5
 
 #define PWDN_GPIO_NUM 32
 #define RESET_GPIO_NUM -1
@@ -132,10 +133,18 @@ void handleNewMessages(int numNewMessages) {
 
     String text = bot.messages[i].text;
 
-    String fromName = bot.messages[i].from_name;
-
     if (text == "/start") {
-      bot.sendMessage(chatId, "Welcome", "Markdown");
+      bot.sendMessage(chatId, "Welcome! Use /unlock to open the lock.", "Markdown");
+    } else if (text == "/unlock") {
+      digitalWrite(RELAY_PIN, LOW); // Unlock the solenoid lock
+      lockState = true;
+      bot.sendMessage(chatId, "The door is now unlocked.", "");
+      delay(5000); // Keep the lock open for 5 seconds
+      digitalWrite(RELAY_PIN, HIGH); // Lock the solenoid lock again
+      lockState = false;
+    } else if (text == "/photo") {
+      sendPhotoTelegram();
+      bot.sendMessage(chatId, "Photo has been sent.", "");
     }
   }
 }
@@ -188,16 +197,15 @@ void configInitCamera() {
 }
 
 void setup() {
+  pinMode(RELAY_PIN, OUTPUT);
+  digitalWrite(RELAY_PIN, HIGH); // Initially lock the solenoid lock
+  pinMode(PIR_PIN, INPUT); // Set PIR pin as input
+  pinMode(FLASH_LED, OUTPUT);
   pinMode(buzzer, OUTPUT);
-  digitalWrite(buzzer,HIGH);
+  digitalWrite(buzzer, HIGH);
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
   Serial.begin(115200);
   delay(1000);
-
-  pinMode(FLASH_LED, OUTPUT);
-  
-  pinMode(TRIG_PIN, OUTPUT);
-  pinMode(ECHO_PIN, INPUT);
 
   WiFi.mode(WIFI_STA);
   Serial.println();
@@ -216,34 +224,22 @@ void setup() {
 
   Serial.println("Start configuring and initializing the camera...");
   configInitCamera();
-  Serial.println("Successfully configure and initialize the camera.");
+  Serial.println("Successfully configured and initialized the camera.");
 
   delay(1000);
 }
 
 void loop() {
-  if (checkDistance() < 5) {
-    Serial.println("Motion detected!");
-    digitalWrite(buzzer,LOW);
-    delay(100);
-    digitalWrite(buzzer,HIGH);
-    sendPhotoTelegram();
+  if (bot.getUpdates(bot_lasttime)) {
+    handleNewMessages(bot.numberOfNewMessages());
+    bot_lasttime = millis();
+  }
 
+  if (digitalRead(PIR_PIN) == HIGH) {
+    Serial.println("Motion detected!");
+    sendPhotoTelegram();
+    delay(5000); // Debounce delay
   } else {
     Serial.println("No motion detected.");
-    digitalWrite(buzzer,HIGH);
   }
-  
-}
-
-float checkDistance() {
-  digitalWrite(TRIG_PIN, LOW);
-  delayMicroseconds(2);
-  digitalWrite(TRIG_PIN, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
-  float duration = pulseIn(ECHO_PIN, HIGH);
-  float distance = duration * 0.034 / 2;
-  Serial.println(distance);
-  return distance;
 }
