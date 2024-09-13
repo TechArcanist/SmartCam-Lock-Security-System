@@ -35,9 +35,7 @@ The **ESP32-CAM** captures images whenever the **PIR Motion Sensor** detects mov
 
 2. Set up the ESP32-CAM and install the required libraries for the camera, Telegram, and relay control.
 
-3. Connect the components as per the [circuit diagram](#circuit-diagram).
-
-4. Upload the code using the Arduino IDE or PlatformIO and configure the Telegram Bot Token and Chat ID.
+3. Upload the code using the Arduino IDE or PlatformIO and configure the Telegram Bot Token and Chat ID.
 
 ## Usage
 
@@ -48,7 +46,8 @@ The **ESP32-CAM** captures images whenever the **PIR Motion Sensor** detects mov
 
 ## Circuit Diagram
 
-![Circuit Diagram](circuit-diagram.png)
+![image](https://github.com/user-attachments/assets/3b16d8c9-d111-4b15-bd52-812120de0c24)
+
 
 ## Video Demonstration
 
