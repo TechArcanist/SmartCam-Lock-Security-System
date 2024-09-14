@@ -46,8 +46,7 @@ The **ESP32-CAM** captures images whenever the **PIR Motion Sensor** detects mov
 
 ## Circuit Diagram
 
-![image](https://github.com/user-attachments/assets/3b16d8c9-d111-4b15-bd52-812120de0c24)
-
+![367374439-3b16d8c9-d111-4b15-bd52-812120de0c24](https://github.com/user-attachments/assets/fb1a7835-4acd-4be9-9b98-be39f1992af7)
 
 ## Video Demonstration
 
