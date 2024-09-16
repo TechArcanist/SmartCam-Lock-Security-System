@@ -62,7 +62,6 @@ https://github.com/user-attachments/assets/1edc0d9c-5074-49bd-9e3f-be521f7ef96b
 - Integrate video streaming capabilities.
 - Develop a mobile app for seamless access and management of the security system.
 
----
 
 <h1 align="center">
     <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&color=00008B&center=true&vCenter=true&width=500&height=70&duration=4000&lines=Thanks+for+Visiting!+👋;" />
